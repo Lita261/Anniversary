@@ -1,0 +1,202 @@
+body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background: #fae1dd;
+    /* Background image */
+    background-image: url('aniv.jpg'); /* your image path */
+    background-size: cover;       /* cover the screen */
+    background-position: center;  /* center the image */
+    background-repeat: no-repeat; /* no tiling */
+    background-attachment: fixed; /* stays in place when scrolling */
+}
+
+.container {
+    position: relative;
+}
+
+.birthday {
+    position: relative;
+    top: 50px;
+    cursor: pointer;
+    animation: up 3s ease-in-out infinite;
+}
+.birthday::before {
+    content: "";
+    position: absolute;
+    width: 330px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.3);
+    top: 265px;
+    left: -15px;
+    animation: scale 3s linear infinite;
+}
+
+@keyframes scale {
+    0%,100% { transform: scaleX(1); }
+    50% { transform: scaleX(.85); }
+}
+
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #db4f6a;
+    display: grid;
+    place-items: center;
+}
+
+.envelope::before {
+    content: '';
+    position: absolute;
+    width: 212px;
+    height: 212px;
+    background: #db4f6a;
+    transform: rotate(45deg);
+    top: -105px;
+    left: 44px;
+    border-radius: 30px 0 0 0;
+}
+/* Keyframes for floating */
+@keyframes up {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+}
+
+.front {
+    position: absolute;
+    border-right: 180px solid #db4f6a;
+    border-top: 95px solid transparent;
+    border-bottom: 100px solid transparent;
+    left: 120px;
+    top: 5px;
+    width: 0;
+    height: 0;
+    z-index: 10;
+}
+
+.front::before {
+    position: absolute;
+    content: "";
+    border-left: 300px solid #fda996;
+    border-top: 195px solid transparent;
+    left: -120px;
+    top: -95px;
+}
+
+
+.card {
+    position: relative;
+    width: 250px;
+    height: 180px;
+    background: #fff;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertical center */
+    align-items: center;     /* horizontal center */
+    gap: 0.3em;              /* space between text and heart */
+    padding: 0.5em;          /* internal padding */
+    transition: transform 1s;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px dashed #003049;
+}
+
+.birthday:hover .card {
+    transform: translateY(-120px); /* card floats up */
+}
+
+.card .text {
+    font-family: 'Times New Roman', serif;
+    font-size: 12pt;          /* responsive text size */
+    text-align: center;
+    line-height: 1.2;         /* vertical spacing */
+    max-width: 90%;            /* prevent overflow */
+    word-wrap: break-word;     /* wrap long text */
+}
+
+.card .heart {
+    width: 1em;                /* emoji-sized */
+    height: 1em;
+    background: #db4f6a;
+    transform: rotate(45deg);
+    margin-top: 0.2em;
+    position: relative;
+    flex-shrink: 0;
+
+    /* heartbeat on hover */
+}
+
+.card .heart::before,
+.card .heart::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #db4f6a;
+    border-radius: 50%;
+}
+
+.card .heart::before {
+    top: -50%;
+    left: 0;
+}
+
+.card .heart::after {
+    left: -50%;
+    top: 0;
+}
+
+/* Heartbeat animation */
+@keyframes heartbeat {
+    0%, 100% { transform: rotate(45deg) scale(1); }
+    25%, 75% { transform: rotate(45deg) scale(1.15); }
+    50% { transform: rotate(45deg) scale(1.2); }
+}
+
+/* Activate heartbeat only when hovering over card */
+.birthday:hover .card .heart {
+    animation: heartbeat 1.2s infinite;
+
+} 
+/* ===== FALLING HEARTS CONTAINER ===== */
+.falling-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* so hearts don't block clicks */
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* ===== EACH FALLING HEART ===== */
+.heart-fall {
+    position: absolute;
+    font-size: clamp(12px, 3vw, 24px); /* responsive heart size */
+    user-select: none;
+    pointer-events: none;
+}
+
+/* ===== FALLING ANIMATION ===== */
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
