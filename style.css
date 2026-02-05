@@ -43,7 +43,7 @@ body {
     position: relative;
     width: 300px;
     height: 200px;
-    background: #fda996;
+    background: #ff866b;
     display: grid;
     place-items: center;
 }
@@ -53,7 +53,7 @@ body {
     position: absolute;
     width: 212px;
     height: 212px;
-    background: #fda996;
+    background: #ff866b;
     transform: rotate(45deg);
     top: -105px;
     left: 44px;
@@ -80,7 +80,7 @@ body {
 .front::before {
     position: absolute;
     content: "";
-    border-left: 300px solid #fda996;
+    border-left: 300px solid #ff866b;
     border-top: 195px solid transparent;
     left: -120px;
     top: -95px;
@@ -200,5 +200,6 @@ body {
         opacity: 0;
     }
 }
+
 
 
