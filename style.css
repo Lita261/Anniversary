@@ -118,7 +118,7 @@ body {
 
 .card .text {
     font-family: 'Times New Roman', serif;
-    font-size: 12pt;          /* responsive text size */
+    font-size: 10pt;          /* responsive text size */
     text-align: center;
     line-height: 1.2;         /* vertical spacing */
     max-width: 90%;            /* prevent overflow */
@@ -200,6 +200,7 @@ body {
         opacity: 0;
     }
 }
+
 
 
 
